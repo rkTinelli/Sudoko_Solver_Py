@@ -10,17 +10,26 @@ board = [
     [0, 4, 9, 2, 0, 6, 0, 0, 7]
 ]
 
-def printBoard(sudokuBoard):
+def showBoard(sudokuBoard):
     for x in range(9):
+        if x % 3 == 0 or x == 0:
+            print(" - - -  - - -  - - -")
         for y in range(9):
+            # if y==0 :
+            #    print("|",end='')
             if y != 8:
+                if y == 0 or y % 3 == 0:
+                    #if it's the first number in the list
+                    # add the line symbol
+                    print("|",end='')
                 # all lines expect the last should have
                 # a space and continue in the same line
-                print(str(sudokuBoard[x][y]) + " ",end='')
+                print(str(sudokuBoard[x][y]) + " ", end='')
             else:
-                #Last number in that line should print
-                #and proceed to the next line
-                print(str(sudokuBoard[x][y]), end='\n')
+                # Last number in that line should print
+                # the values with the line and proceed to the next line
+                print(str(sudokuBoard[x][y]) + "|", end='\n')
+    print(" - - -  - - -  - - -")
 
-
-printBoard(board)
+#Main code below
+showBoard(board)
