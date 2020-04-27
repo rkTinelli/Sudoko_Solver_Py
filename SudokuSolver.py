@@ -10,12 +10,29 @@ board = [
     [0, 4, 9, 2, 0, 6, 0, 0, 7]
 ]
 
+def findSolution(sudokuBoard):
+    position = findEmpty(sudokuBoard)
+    if position == None:
+        # Sudoku solved, returns true
+        return True
+    else:
+        # Sudoku still have empty spaces
+        for i in range(10): # Test all possible values
+            if checkIfValid(sudokuBoard,i,position):
+                sudokuBoard[position[0]][position[1]] = i
+                if findSolution(sudokuBoard): # Calls recursively to try further on the possible solution
+                    return True
+                sudokuBoard[position[0]][position[1]] = 0
+    return False
+
+
 def findEmpty(sudokuBoard):
     for x in range(9):
         for y in range(9):
             if sudokuBoard[x][y] == 0:
                 return (x, y)
-            # returns None if nothing was found
+    # returns None if nothing was found
+    return None
 
 
 def checkIfValid(sudokuBoard, number, pos):
@@ -69,4 +86,6 @@ def showBoard(sudokuBoard):
 
 
 # Main code below
+showBoard(board)
+findSolution(board)
 showBoard(board)
